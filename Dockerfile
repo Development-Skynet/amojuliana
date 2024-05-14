@@ -13,8 +13,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 WORKDIR /app
 COPY . .
 
-RUN echo ${DB_HOST}
-
 RUN composer i
 RUN cp /app/.env.example /app/.env && \
     sed -i 's/^DB_CONNECTION=mysql/DB_CONNECTION=mysql/' /app/.env && \
