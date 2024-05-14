@@ -9,11 +9,11 @@ services:
         image: amojuliana
         environment:
             DB_CONNECTION: mysql
-            DB_HOST: ${vars.DB_HOST}
+            DB_HOST: ${DB.DB_HOST}
             DB_PORT: 3306
-            DB_USERNAME: ${vars.DB_USERNAME}
-            DB_PASSWORD: ${vars.DB_PASSWORD}
-            DB_DATABASE: ${vars.DB_DATABASE}
+            DB_USERNAME: ${DB.DB_USERNAME}
+            DB_PASSWORD: ${DB.DB_PASSWORD}
+            DB_DATABASE: ${DB.DB_DATABASE}
         ports:
             - "80:80"
         volumes:
