@@ -22,12 +22,13 @@ jobs:
           script: |
             cd amojuliana
             git pull origin master
+            cp .env.example .env  # Копирование .env.example в .env
+            sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/" .env
+            sed -i "s/^DB_USERNAME=.*/DB_USERNAME=${DB_USERNAME}/" .env
+            sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASSWORD}/" .env
+            sed -i "s/^DB_DATABASE=.*/DB_DATABASE=${DB_DATABASE}/" .env
             docker-compose down
             docker-compose build
-            DB_HOST="${{ secrets.DB_HOST }}" \
-            DB_USERNAME="${{ secrets.DB_USERNAME }}" \
-            DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
-            DB_DATABASE="${{ secrets.DB_DATABASE }}" \
             docker-compose up -d
         env:
           SERVER_IP: ${{ secrets.SERVER_IP }}
