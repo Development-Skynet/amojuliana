@@ -14,6 +14,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN cat .env
+
 RUN composer install
 
 RUN php artisan key:generate
