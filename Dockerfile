@@ -13,6 +13,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 WORKDIR /app
 COPY . .
 
+RUN composer i
+
 RUN cp /app/.env.example /app/.env && \
     php artisan key:generate && \
     composer update && \
