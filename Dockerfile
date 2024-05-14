@@ -15,6 +15,12 @@ COPY . .
 
 RUN composer i
 RUN cp /app/.env.example /app/.env && \
+    sed -i 's/^DB_CONNECTION=mysql/DB_CONNECTION=mysql/' /app/.env && \
+    sed -i 's/DB_HOST=.*/DB_HOST=${DB_HOST}/' /app/.env && \
+    sed -i 's/^DB_PORT=3306/DB_PORT=3306/' /app/.env && \
+    sed -i 's/DB_DATABASE=.*/DB_DATABASE=${DB_DATABASE}/' /app/.env && \
+    sed -i 's/DB_USERNAME=.*/DB_USERNAME=${DB_USERNAME}/' /app/.env && \
+    sed -i 's/DB_PASSWORD=.*/DB_PASSWORD=${DB_PASSWORD}/' /app/.env && \
     cat .env && \
     php artisan key:generate && \
     composer update && \

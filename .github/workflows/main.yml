@@ -22,6 +22,10 @@ jobs:
           script: |
             cd amojuliana
             git pull origin master
+            export DB_HOST="${{ secrets.DB_HOST }}"
+            export DB_USERNAME="${{ secrets.DB_USERNAME }}"
+            export DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
+            export DB_DATABASE="${{ secrets.DB_DATABASE }}"
             docker-compose down
             docker-compose build
             docker-compose up -d
@@ -29,7 +33,3 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
           SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
