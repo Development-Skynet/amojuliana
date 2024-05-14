@@ -14,7 +14,7 @@ WORKDIR /app
 COPY . .
 
 RUN composer i
-
+RUN cat .env
 RUN cp /app/.env.example /app/.env && \
     php artisan key:generate && \
     composer update && \
