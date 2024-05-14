@@ -1,3 +1,8 @@
+ARG DB_HOST
+ARG DB_USERNAME
+ARG DB_PASSWORD
+ARG DB_DATABASE
+
 FROM php:8.1-fpm-alpine
 
 RUN apk add --no-cache nginx wget mysql-client autoconf g++ make
