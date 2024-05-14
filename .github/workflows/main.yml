@@ -13,6 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set environment variables
+        run: |
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> $GITHUB_ENV
+
       - name: SSH into server and deploy
         uses: appleboy/ssh-action@master
         with:
@@ -23,18 +30,10 @@ jobs:
             cd amojuliana
             git pull origin master
             cp .env.example .env
-            sed -i "s/^DB_HOST=.*/DB_HOST=${secrets.DB_HOST}/" .env
-            sed -i "s/^DB_USERNAME=.*/DB_USERNAME=${secrets.DB_USERNAME}/" .env
-            sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${secrets.DB_PASSWORD}/" .env
-            sed -i "s/^DB_DATABASE=.*/DB_DATABASE=${secrets.DB_DATABASE}/" .env
+            sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/" .env
+            sed -i "s/^DB_USERNAME=.*/DB_USERNAME=${DB_USERNAME}/" .env
+            sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASSWORD}/" .env
+            sed -i "s/^DB_DATABASE=.*/DB_DATABASE=${DB_DATABASE}/" .env
             docker-compose down
             docker-compose build
             docker-compose up -d
-        env:
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}
-          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
