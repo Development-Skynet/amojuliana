@@ -14,18 +14,15 @@ WORKDIR /app
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader && \
-    ls -al /app
+RUN composer install --no-dev --optimize-autoloader \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN chmod 777 .env
 
-RUN php artisan key:generate && \
-    cat .env
+RUN php artisan key:generate
 
-RUN chmod -R 777 /app/storage && \
-    ls -al /app/storage
+RUN chmod -R 777 /app/storage \
 
 RUN sed -i 's/^listen = .*/listen = 9000/' /usr/local/etc/php-fpm.d/www.conf
 
