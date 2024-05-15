@@ -15,7 +15,7 @@ WORKDIR /app
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader && \
-    ls -al /app/vendor
+    ls -al /app
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
