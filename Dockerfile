@@ -14,7 +14,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader && \
+    ls -al \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
@@ -24,5 +25,4 @@ RUN php artisan key:generate
 RUN chmod -R 777 /app/storage
 
 #CMD ["php-fpm"]
-CMD ls -la
 CMD php artisan serve --host=0.0.0.0 --port=8080
