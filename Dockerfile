@@ -24,4 +24,5 @@ RUN php artisan key:generate
 RUN chmod -R 777 /app/storage
 
 #CMD ["php-fpm"]
+CMD ls -la
 CMD php artisan serve --host=0.0.0.0 --port=8080
