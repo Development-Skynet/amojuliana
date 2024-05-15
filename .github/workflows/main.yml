@@ -13,13 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set environment variables
-        run: |
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
-          echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> $GITHUB_ENV
-
       - name: SSH into server and deploy
         uses: appleboy/ssh-action@master
         with:
@@ -30,6 +23,10 @@ jobs:
             cd amojuliana
             git pull origin master
             cp .env.example .env
+            echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+            echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> $GITHUB_ENV
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> $GITHUB_ENV
+            echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> $GITHUB_ENV
             sed -i "s/^DB_HOST=.*/DB_HOST=${DB_HOST}/" .env
             sed -i "s/^DB_USERNAME=.*/DB_USERNAME=${DB_USERNAME}/" .env
             sed -i "s/^DB_PASSWORD=.*/DB_PASSWORD=${DB_PASSWORD}/" .env
