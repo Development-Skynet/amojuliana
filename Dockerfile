@@ -19,7 +19,10 @@ RUN composer install --no-dev --optimize-autoloader && \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN php artisan key:generate
+RUN chmod 777 .env
+
+RUN php artisan key:generate && \
+    cat .env
 
 RUN chmod -R 777 /app/storage && \
     ls -al /app/storage
