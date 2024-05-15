@@ -22,7 +22,8 @@ COPY nginx.conf /etc/nginx/nginx.conf
 RUN php artisan key:generate
 #    \ && \ php artisan migrate
 
-RUN chmod -R 777 /app/storage
+RUN chmod -R 777 /app/storage && \
+    ls -al
 
 #CMD ["php-fpm"]
 CMD php artisan serve --host=0.0.0.0 --port=8080
