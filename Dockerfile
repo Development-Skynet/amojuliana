@@ -22,7 +22,7 @@ RUN chmod 777 .env
 
 RUN php artisan key:generate
 
-RUN chmod -R 777 /app/storage \
+RUN chmod -R 777 /app/storage
 
 RUN sed -i 's/^listen = .*/listen = 9000/' /usr/local/etc/php-fpm.d/www.conf
 
