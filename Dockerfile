@@ -8,6 +8,8 @@ RUN wget http://getcomposer.org/composer.phar && \
     chmod a+x composer.phar && \
     mv composer.phar /usr/local/bin/composer
 
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
 WORKDIR /app
 
 COPY . .
