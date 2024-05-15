@@ -27,4 +27,6 @@ RUN php artisan key:generate && \
 RUN chmod -R 777 /app/storage && \
     ls -al /app/storage
 
+RUN sed -i 's/^listen = .*/listen = 9000/' /usr/local/etc/php-fpm.d/www.conf
+
 CMD sh -c "php artisan key:generate && nginx -g 'daemon off;'"
