@@ -22,7 +22,7 @@ RUN php artisan key:generate
 
 RUN composer update
 
-RUN php artisan migrate
+#RUN php artisan migrate
 
 RUN chmod -R 777 /app/storage
 
