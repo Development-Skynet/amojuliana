@@ -1,6 +1,6 @@
 FROM php:8.1-fpm-alpine
 
-RUN apk add --no-cache nginx wget mysql-client autoconf g++ make
+RUN apk add --no-cache bash nginx wget mysql-client autoconf g++ make
 
 RUN docker-php-ext-install pdo_mysql
 
@@ -15,15 +15,13 @@ WORKDIR /app
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader && \
-    ls -al
+    ls -al /app/vendor
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN php artisan key:generate
-#    \ && \ php artisan migrate
 
 RUN chmod -R 777 /app/storage && \
-    ls -al
+    ls -al /app/storage
 
-#CMD ["php-fpm"]
 #CMD php artisan serve --host=0.0.0.0 --port=8080
