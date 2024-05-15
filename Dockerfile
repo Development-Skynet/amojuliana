@@ -27,5 +27,4 @@ RUN php artisan key:generate && \
 RUN chmod -R 777 /app/storage && \
     ls -al /app/storage
 
-CMD php artisan key:generate
-CMD php artisan serve --host=0.0.0.0 --port=8080
+CMD sh -c "php artisan key:generate && php artisan serve --host=0.0.0.0 --port=8080"
