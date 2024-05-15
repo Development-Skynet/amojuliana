@@ -26,4 +26,4 @@ RUN chmod -R 777 /app/storage && \
     ls -al
 
 #CMD ["php-fpm"]
-CMD php artisan serve --host=0.0.0.0 --port=8080
+#CMD php artisan serve --host=0.0.0.0 --port=8080
