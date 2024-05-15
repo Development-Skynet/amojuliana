@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /path/to/your/project
+            cd amojuliana
             git pull origin master
             cp .env.example .env
             sed -i "s/^DB_HOST=.*/DB_HOST=${{ secrets.DB_HOST }}/" .env
