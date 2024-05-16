@@ -18,6 +18,9 @@ RUN composer install --no-dev --optimize-autoloader
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
 RUN chmod 777 .env
 
 RUN php artisan key:generate
@@ -26,4 +29,4 @@ RUN chmod -R 777 /app/storage
 
 RUN sed -i 's/^listen = .*/listen = 9000/' /usr/local/etc/php-fpm.d/www.conf
 
-CMD sh -c "php artisan key:generate && nginx -g 'daemon off;'"
+CMD ["sh", "/usr/local/bin/start.sh"]
