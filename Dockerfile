@@ -26,4 +26,4 @@ RUN chmod -R 777 /app/storage
 
 RUN sed -i 's/^listen = .*/listen = 9000/' /usr/local/etc/php-fpm.d/www.conf
 
-#CMD ["sh", "start.sh"]
+CMD ["sh", "startup.sh"]
