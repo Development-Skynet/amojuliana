@@ -18,7 +18,7 @@ RUN composer install --no-dev --optimize-autoloader
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY start.sh /usr/local/bin/start.sh
+COPY ../start.sh /usr/local/bin/start.sh
 RUN chmod +x /usr/local/bin/start.sh
 
 RUN chmod 777 .env
