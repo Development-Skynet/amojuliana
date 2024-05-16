@@ -24,6 +24,4 @@ RUN php artisan key:generate
 
 RUN chmod -R 777 /app/storage
 
-RUN sed -i 's/^listen = .*/listen = 9000/' /usr/local/etc/php-fpm.d/www.conf
-
 CMD ["sh", "startup.sh"]
